@@ -66,7 +66,7 @@
             margin: 0 auto;
         }
 
-        /* FIX: everything hugs the LEFT edge */
+        /* Everything hugs the RIGHT edge */
         .nav-container {
             width: 100%;
             max-width: 1200px;
@@ -74,15 +74,15 @@
             padding: 0 1rem;
             display: flex;
             align-items: center;
-            justify-content: flex-start;
+            justify-content: flex-end;   /* <-- right aligned */
             height: 100%;
         }
 
-        /* FIX: hamburger no longer pushes the list away */
+        /* Hamburger sits on the right too */
         #menu-toggle {
             display: none;
-            margin-right: 0.5rem;
-            margin-left: 0;
+            margin-left: 0.5rem;         /* <-- space on the left of the button */
+            margin-right: 0;
             font-size: 0.9rem;
             line-height: 1;
             background: transparent;
@@ -120,21 +120,22 @@
             font-size: 0.75rem;
         }
 
-        /* FIX: dropdown opens from the LEFT, directly under the button */
+        /* Dropdown opens from the RIGHT, directly under the button */
         #nav-links.open {
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
+            align-items: flex-end;       /* <-- items right aligned */
             position: absolute;
             top: 22px;
-            left: 1rem;
-            right: auto;
+            right: 1rem;                 /* <-- anchored right */
+            left: auto;
             padding: 1rem;
             background: var(--hero-green);
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
             border-radius: 5px;
             gap: 1rem;
             z-index: 999;
+            text-align: right;
         }
 
         /* Buttons */
@@ -935,12 +936,12 @@
     <nav id="navbar">
         <div class="nav-container">
 
-            <!-- Hamburger (mobile only) — LEFT -->
+            <!-- Hamburger (mobile only) — RIGHT -->
             <button onclick="toggleMenu()" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
                 <i class="fas fa-bars"></i>
             </button>
 
-            <!-- Menu — also LEFT -->
+            <!-- Menu — RIGHT -->
             <ul id="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="solutions.html">Solutions</a></li>
@@ -1268,4 +1269,4 @@
         });
     </script>
 </body>
-            </html>
+                        </html>
