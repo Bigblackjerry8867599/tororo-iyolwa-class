@@ -16,7 +16,7 @@
             --accent: #ffd166;
             --text: #333333;
             --other: #609779;
-            --hero-grey: #4a4a4a;
+            --hero-grey: #121212;
             --card-charcoal: #2b2622;
             --card-charcoal-hover: #352e28;
             --card-gold-seam: rgba(255, 209, 102, 0.15);
@@ -41,11 +41,11 @@
             font-weight: 600;
         }
 
-        /* ===== SLIM NAV — shares the hero grey background ===== */
+        /* ===== SLIM NAV — shares the hero background ===== */
         nav {
             position: sticky;
             top: 0;
-            background: var(--hero-grey);   /* same as hero */
+            background: var(--hero-grey);
             z-index: 1000;
             border-bottom: none;
             padding: 0;
@@ -63,12 +63,11 @@
             padding: 0 1rem;
             display: flex;
             align-items: center;
-            justify-content: flex-end;   /* links + hamburger on the right */
+            justify-content: flex-end;
             height: 100%;
             position: relative;
         }
 
-        /* Hamburger now sits on the RIGHT */
         #menu-toggle {
             display: none;
             margin-left: 0.5rem;
@@ -111,7 +110,6 @@
             font-size: 0.75rem;
         }
 
-        /* Mobile: dropdown anchored to the RIGHT, text left-aligned inside */
         @media (max-width: 768px) {
             #menu-toggle { display: block; }
 
@@ -119,16 +117,16 @@
                 display: none;
                 position: absolute;
                 top: 100%;
-                right: 0;                 /* anchored right */
+                right: 0;
                 left: auto;
                 flex-direction: column;
-                align-items: flex-start;  /* text starts at left edge */
+                align-items: flex-start;
                 text-align: left;
                 gap: 0.75rem;
                 min-width: 200px;
                 padding: 0.9rem 1rem;
-                background: #3a3a3a;      /* darker panel for contrast */
-                box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
+                background: #3a3a3a;
+                box-shadow: 0 8px 18px rgba(0, 0, 0, 0.55);
                 border-radius: 6px;
                 z-index: 999;
             }
@@ -234,7 +232,6 @@
             overflow: hidden;
         }
 
-        /* --- Text banner — now two columns --- */
         .hero-banner {
             min-height: 150px;
             display: flex;
@@ -276,7 +273,6 @@
             margin-bottom: 14px;
         }
 
-        /* Two-column layout for the phrases */
         .hero-banner-columns {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -286,9 +282,7 @@
             margin: 0 auto;
         }
 
-        .hero-banner-col {
-            text-align: center;
-        }
+        .hero-banner-col { text-align: center; }
 
         .hero-banner-text {
             font-family: 'Playfair Display', serif;
@@ -315,15 +309,57 @@
             margin-top: 10px;
         }
 
+        /* ===== MOBILE BANNER — keep TWO columns ===== */
         @media (max-width: 640px) {
-            .hero-banner-columns {
-                grid-template-columns: 1fr;
-                gap: 1rem;
+            .hero-banner {
+                min-height: 140px;
+                padding: 18px 10px;
             }
-            .hero-banner-sub { font-size: 0.6rem; }
+
+            /* keep two columns on phones */
+            .hero-banner-columns {
+                grid-template-columns: 1fr 1fr;
+                gap: 0;
+                align-items: start;
+            }
+
+            .hero-banner-col {
+                padding: 0 0.55rem;
+                text-align: center;
+            }
+
+            /* hairline gold divider between the two columns */
+            .hero-banner-col + .hero-banner-col {
+                border-left: 1px solid rgba(255, 209, 102, 0.28);
+            }
+
+            .hero-banner-kicker {
+                font-size: 0.5rem;
+                letter-spacing: 0.24em;
+                margin-bottom: 10px;
+            }
+
+            .hero-banner-text {
+                font-size: clamp(0.7rem, 3.3vw, 0.92rem);
+                letter-spacing: 0.04em;   /* desktop 0.12em is too wide here */
+                line-height: 1.4;
+                overflow-wrap: break-word;
+                hyphens: none;
+            }
+
+            .hero-banner-text .dot {
+                margin: 0 0.15em;
+                display: inline;          /* lets the line wrap cleanly at the dot */
+            }
+
+            .hero-banner-sub {
+                font-size: 0.54rem;
+                letter-spacing: 0.1em;
+                line-height: 1.35;
+                margin-top: 6px;
+            }
         }
 
-        /* --- Landscape image strip --- */
         .hero-landscape {
             width: 100%;
             overflow: hidden;
@@ -337,7 +373,6 @@
             display: block;
         }
 
-        /* --- Hero content (cards + lady) --- */
         .hero-inner {
             max-width: 1200px;
             margin: 0 auto;
@@ -366,7 +401,7 @@
             max-width: 480px;
             height: auto;
             display: block;
-            filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.28));
+            filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.4));
             pointer-events: none;
         }
 
@@ -407,7 +442,7 @@
             border: 1px solid var(--card-gold-seam);
             border-radius: 14px;
             padding: 28px 26px 26px;
-            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
             color: #ffffff;
             text-align: left;
             position: relative;
@@ -429,7 +464,7 @@
         .hero-card:hover {
             background: var(--card-charcoal-hover);
             border-color: rgba(255, 209, 102, 0.35);
-            box-shadow: 0 16px 34px rgba(0, 0, 0, 0.32);
+            box-shadow: 0 16px 34px rgba(0, 0, 0, 0.45);
         }
 
         .hero-card-label {
@@ -920,8 +955,6 @@
     <!-- Navigation -->
     <nav id="navbar">
         <div class="nav-container">
-
-            <!-- Nav Links (right side on desktop) -->
             <ul id="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="solutions.html">Solutions</a></li>
@@ -931,7 +964,6 @@
                 <li><a href="#" class="nav-cta">Sign Up</a></li>
             </ul>
 
-            <!-- Hamburger (right) -->
             <button id="menu-toggle"
                     aria-label="Toggle navigation menu"
                     aria-expanded="false"
@@ -944,8 +976,6 @@
 
     <!-- Hero Section -->
     <section class="hero">
-
-        <!-- Banner — two-column text -->
         <div class="hero-banner" aria-label="Mealcarta invitation banner">
             <div class="hero-banner-inner">
                 <p class="hero-banner-kicker">A Mealcarta Invitation</p>
@@ -962,7 +992,6 @@
             </div>
         </div>
 
-        <!-- Landscape image strip -->
         <div class="hero-landscape">
             <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=1800&h=700&q=80"
                  alt="A long communal table set for a shared meal"
@@ -970,7 +999,6 @@
                  decoding="async">
         </div>
 
-        <!-- Hero content: cards LEFT, image RIGHT -->
         <div class="hero-inner">
             <div class="hero-left">
                 <div class="hero-cards-viewport" aria-label="Mealcarta hero highlights — scroll or swipe vertically to explore">
@@ -1329,7 +1357,6 @@
         </div>
     </footer>
 
-    <!-- Toggle Script -->
     <script>
       function toggleMenu() {
         const links  = document.getElementById('nav-links');
@@ -1338,7 +1365,6 @@
         toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
       }
 
-      // Close the dropdown when tapping outside it, or on a link
       document.addEventListener('click', function (e) {
         const links  = document.getElementById('nav-links');
         const toggle = document.getElementById('menu-toggle');
@@ -1350,7 +1376,6 @@
     </script>
 
     <script>
-        // Tab functionality
         document.addEventListener('DOMContentLoaded', function() {
             const tabBtns = document.querySelectorAll('.tab-btn');
 
@@ -1366,7 +1391,6 @@
                 });
             });
 
-            // Navbar scroll effect
             window.addEventListener('scroll', function() {
                 const navbar = document.querySelector('.navbar');
                 if (!navbar) return;
@@ -1377,7 +1401,6 @@
                 }
             });
 
-            // Simple animation for cards on scroll
             const observerOptions = { threshold: 0.1 };
 
             const observer = new IntersectionObserver((entries) => {
@@ -1412,4 +1435,4 @@
         });
     </script>
 </body>
-  </html>
+    </html>
