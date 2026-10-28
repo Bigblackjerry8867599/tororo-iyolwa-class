@@ -6,7 +6,7 @@
     <title>Solutions | MEALCARTA - Community-Driven Experiences</title>
     <meta name="description" content="Discover UPTOPIA's solutions for hosts and attendees to create meaningful community experiences.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #330000;
@@ -16,7 +16,9 @@
             --accent: #ffd166;
             --text: #333333;
             --other: #609779;
-            --hero-grey: #121212;
+            --hero-bg: #122e2b;              /* deep teal */
+            --nav-bg: #000000;               /* navbar background (black) */
+            --banner-black: #000000;
             --card-charcoal: #2b2622;
             --card-charcoal-hover: #352e28;
             --card-gold-seam: rgba(255, 209, 102, 0.15);
@@ -41,11 +43,11 @@
             font-weight: 600;
         }
 
-        /* ===== SLIM NAV — shares the hero background ===== */
+        /* ===== SLIM NAV — black background ===== */
         nav {
             position: sticky;
             top: 0;
-            background: var(--hero-grey);
+            background: var(--nav-bg);
             z-index: 1000;
             border-bottom: none;
             padding: 0;
@@ -125,9 +127,10 @@
                 gap: 0.75rem;
                 min-width: 200px;
                 padding: 0.9rem 1rem;
-                background: #3a3a3a;
+                background: var(--banner-black);
                 box-shadow: 0 8px 18px rgba(0, 0, 0, 0.55);
                 border-radius: 6px;
+                border-top: 1px solid rgba(255, 209, 102, 0.28);
                 z-index: 999;
             }
 
@@ -228,49 +231,25 @@
         /* ===== HERO ===== */
         section.hero {
             position: relative;
-            background: var(--hero-grey);
+            background: var(--hero-bg);
             overflow: hidden;
         }
 
+        /* Banner — half-height strip, no gold lines, on black */
         .hero-banner {
-            min-height: 150px;
+            min-height: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 22px 20px;
-            background: var(--hero-grey);
+            padding: 12px 20px;
+            background: var(--banner-black);
             position: relative;
         }
-
-        .hero-banner::before,
-        .hero-banner::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 64px;
-            height: 2px;
-            background: var(--accent);
-            opacity: 0.85;
-            border-radius: 2px;
-        }
-        .hero-banner::before { top: 10px; }
-        .hero-banner::after  { bottom: 10px; }
 
         .hero-banner-inner {
             max-width: 1000px;
             width: 100%;
             text-align: center;
-        }
-
-        .hero-banner-kicker {
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.62rem;
-            font-weight: 600;
-            letter-spacing: 0.42em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 14px;
         }
 
         .hero-banner-columns {
@@ -284,19 +263,16 @@
 
         .hero-banner-col { text-align: center; }
 
+        /* ===== "GET ANSWERS" — clean domain-style wordmark ===== */
         .hero-banner-text {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            font-size: clamp(0.95rem, 2.2vw, 1.55rem);
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
+            font-family: 'Poppins', sans-serif;
+            font-style: normal;
+            font-weight: 500;
+            font-size: clamp(1.9rem, 4.4vw, 3.1rem);
+            letter-spacing: -0.02em;
+            text-transform: lowercase;
             color: #ffffff;
-            line-height: 1.3;
-        }
-
-        .hero-banner-text .dot {
-            color: var(--accent);
-            margin: 0 0.35em;
+            line-height: 1.05;
         }
 
         .hero-banner-sub {
@@ -306,21 +282,19 @@
             letter-spacing: 0.22em;
             text-transform: uppercase;
             color: rgba(255, 255, 255, 0.65);
-            margin-top: 10px;
+            margin-top: 0;
         }
 
-        /* ===== MOBILE BANNER — keep TWO columns ===== */
         @media (max-width: 640px) {
             .hero-banner {
-                min-height: 140px;
-                padding: 18px 10px;
+                min-height: 74px;
+                padding: 10px 10px;
             }
 
-            /* keep two columns on phones */
             .hero-banner-columns {
                 grid-template-columns: 1fr 1fr;
                 gap: 0;
-                align-items: start;
+                align-items: center;
             }
 
             .hero-banner-col {
@@ -328,35 +302,22 @@
                 text-align: center;
             }
 
-            /* hairline gold divider between the two columns */
             .hero-banner-col + .hero-banner-col {
                 border-left: 1px solid rgba(255, 209, 102, 0.28);
             }
 
-            .hero-banner-kicker {
-                font-size: 0.5rem;
-                letter-spacing: 0.24em;
-                margin-bottom: 10px;
-            }
-
             .hero-banner-text {
-                font-size: clamp(0.7rem, 3.3vw, 0.92rem);
-                letter-spacing: 0.04em;   /* desktop 0.12em is too wide here */
-                line-height: 1.4;
+                font-size: clamp(1.4rem, 6vw, 1.84rem);
+                letter-spacing: -0.01em;
+                line-height: 1.1;
                 overflow-wrap: break-word;
                 hyphens: none;
-            }
-
-            .hero-banner-text .dot {
-                margin: 0 0.15em;
-                display: inline;          /* lets the line wrap cleanly at the dot */
             }
 
             .hero-banner-sub {
                 font-size: 0.54rem;
                 letter-spacing: 0.1em;
-                line-height: 1.35;
-                margin-top: 6px;
+                line-height: 1.3;
             }
         }
 
@@ -373,10 +334,85 @@
             display: block;
         }
 
+        /* ===== MAGAZINE / GREETING-CARD PASSAGE ===== */
+        .hero-magazine {
+            background: transparent;
+            padding: 68px 24px 26px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-magazine-inner {
+            max-width: 680px;
+            width: 100%;
+            text-align: center;
+            color: #ffffff;
+            position: relative;
+        }
+
+        .hero-magazine-inner::before {
+            content: '';
+            display: block;
+            width: 44px;
+            height: 1px;
+            background: var(--accent);
+            margin: 0 auto 26px;
+            opacity: 0.75;
+        }
+
+        .mag-kicker {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.66rem;
+            font-weight: 600;
+            letter-spacing: 0.42em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .mag-headline {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 500;
+            font-size: clamp(1.4rem, 3.2vw, 2.15rem);
+            line-height: 1.32;
+            color: #ffffff;
+            margin-bottom: 22px;
+            letter-spacing: 0.01em;
+        }
+
+        .mag-body {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.82);
+            line-height: 1.85;
+            max-width: 560px;
+            margin: 0 auto 20px;
+        }
+
+        .mag-signature {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 0.85rem;
+            color: var(--accent);
+            opacity: 0.85;
+            letter-spacing: 0.02em;
+        }
+
+        @media (max-width: 640px) {
+            .hero-magazine { padding: 48px 20px 18px; }
+            .hero-magazine-inner::before { margin-bottom: 20px; }
+            .mag-kicker { font-size: 0.56rem; letter-spacing: 0.3em; margin-bottom: 16px; }
+            .mag-headline { font-size: clamp(1.15rem, 5vw, 1.55rem); margin-bottom: 18px; }
+            .mag-body { font-size: 0.87rem; line-height: 1.8; }
+            .mag-signature { font-size: 0.78rem; }
+        }
+
         .hero-inner {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 48px 30px 60px;
+            padding: 34px 30px 60px;
             display: flex;
             align-items: center;
             gap: 60px;
@@ -401,24 +437,24 @@
             max-width: 480px;
             height: auto;
             display: block;
-            filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.4));
+            filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.45));
             pointer-events: none;
         }
 
+        /* ===== HORIZONTAL SCROLL CARDS ===== */
         .hero-cards-viewport {
             position: relative;
-            overflow-y: auto;
-            overflow-x: hidden;
-            max-height: 420px;
-            scroll-snap-type: y proximity;
-            scroll-padding-top: 6px;
-            padding-right: 8px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-snap-type: x proximity;
+            scroll-padding-left: 6px;
+            padding-bottom: 14px;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: thin;
             scrollbar-color: rgba(255, 209, 102, 0.4) transparent;
         }
 
-        .hero-cards-viewport::-webkit-scrollbar { width: 5px; }
+        .hero-cards-viewport::-webkit-scrollbar { height: 5px; width: auto; }
         .hero-cards-viewport::-webkit-scrollbar-track { background: transparent; }
         .hero-cards-viewport::-webkit-scrollbar-thumb {
             background: rgba(255, 209, 102, 0.35);
@@ -430,31 +466,33 @@
 
         .hero-cards-track {
             display: flex;
-            flex-direction: column;
-            gap: 18px;
-            padding-bottom: 12px;
+            flex-direction: row;
+            align-items: stretch;
+            gap: 16px;
+            padding-bottom: 2px;
         }
 
         .hero-card {
-            width: 100%;
+            flex: 0 0 220px;
+            width: 220px;
             scroll-snap-align: start;
             background: var(--card-charcoal);
             border: 1px solid var(--card-gold-seam);
             border-radius: 14px;
-            padding: 28px 26px 26px;
+            padding: 24px 22px 22px;
             box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
             color: #ffffff;
             text-align: left;
             position: relative;
-            transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+            transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
         }
 
         .hero-card::before {
             content: '';
             position: absolute;
             top: 0;
-            left: 26px;
-            width: 34px;
+            left: 22px;
+            width: 30px;
             height: 2px;
             background: var(--accent);
             border-radius: 2px;
@@ -465,59 +503,61 @@
             background: var(--card-charcoal-hover);
             border-color: rgba(255, 209, 102, 0.35);
             box-shadow: 0 16px 34px rgba(0, 0, 0, 0.45);
+            transform: translateY(-4px);
         }
 
         .hero-card-label {
             display: inline-block;
             font-family: 'Poppins', sans-serif;
-            font-size: 0.68rem;
+            font-size: 0.62rem;
             font-weight: 600;
-            letter-spacing: 1.6px;
+            letter-spacing: 1.4px;
             text-transform: uppercase;
             color: var(--accent);
             opacity: 0.9;
-            margin-bottom: 14px;
+            margin-bottom: 10px;
         }
 
         .hero-card-title {
             font-family: 'Playfair Display', serif;
-            font-size: 1.7rem;
+            font-size: 1.35rem;
             font-weight: 600;
             color: #ffffff;
-            margin-bottom: 12px;
-            line-height: 1.25;
+            margin-bottom: 10px;
+            line-height: 1.22;
         }
 
         .hero-card-tagline {
             font-family: 'Playfair Display', serif;
-            font-size: 1.25rem;
+            font-size: 1.05rem;
             font-weight: 500;
             color: #ffffff;
-            margin-bottom: 12px;
-            line-height: 1.4;
+            margin-bottom: 10px;
+            line-height: 1.35;
         }
 
         .hero-card-text {
             font-family: 'Poppins', sans-serif;
-            font-size: 0.92rem;
+            font-size: 0.84rem;
             font-weight: 400;
             color: rgba(255, 255, 255, 0.82);
-            line-height: 1.7;
+            line-height: 1.65;
         }
 
+        /* Responsive */
         @media (max-width: 992px) {
-            .hero-inner { gap: 40px; padding: 40px 24px 50px; }
-            .hero-cards-viewport { max-height: 380px; }
-            .hero-card-title { font-size: 1.5rem; }
-            .hero-card-tagline { font-size: 1.1rem; }
-            .hero-card-text { font-size: 0.88rem; }
+            .hero-inner { gap: 40px; padding: 30px 24px 50px; }
+            .hero-card { flex: 0 0 200px; width: 200px; }
+            .hero-card-title { font-size: 1.2rem; }
+            .hero-card-tagline { font-size: 1rem; }
+            .hero-card-text { font-size: 0.8rem; }
         }
 
         @media (max-width: 768px) {
             .hero-inner {
                 flex-direction: column;
                 gap: 28px;
-                padding: 32px 20px 50px;
+                padding: 28px 20px 50px;
             }
             .hero-left, .hero-right {
                 width: 100%;
@@ -525,22 +565,21 @@
             }
             .hero-right { order: -1; }
             .hero-lady { max-width: 280px; }
-            .hero-cards-viewport { max-height: 360px; }
-            .hero-banner { min-height: 150px; }
+            .hero-card { flex: 0 0 260px; width: 260px; }
+            .hero-card-title { font-size: 1.4rem; }
+            .hero-card-tagline { font-size: 1.1rem; }
+            .hero-card-text { font-size: 0.88rem; }
         }
 
         @media (max-width: 480px) {
-            .hero-inner { padding: 28px 16px 40px; }
+            .hero-inner { padding: 24px 16px 40px; }
             .hero-lady { max-width: 220px; }
-            .hero-cards-viewport { max-height: 320px; }
-            .hero-card { padding: 22px 20px 24px; }
-            .hero-card::before { left: 20px; width: 28px; }
-            .hero-card-title { font-size: 1.3rem; }
+            .hero-card { flex: 0 0 240px; width: 240px; padding: 20px 18px 20px; }
+            .hero-card::before { left: 18px; width: 26px; }
+            .hero-card-title { font-size: 1.2rem; }
             .hero-card-tagline { font-size: 1rem; }
-            .hero-card-text { font-size: 0.85rem; }
-            .hero-card-label { font-size: 0.62rem; letter-spacing: 1.4px; }
-            .hero-banner-kicker { font-size: 0.55rem; letter-spacing: 0.32em; }
-            .hero-banner-text { font-size: 0.9rem; letter-spacing: 0.08em; }
+            .hero-card-text { font-size: 0.82rem; }
+            .hero-card-label { font-size: 0.58rem; letter-spacing: 1.2px; }
         }
 
         /* Solutions Overview */
@@ -976,22 +1015,22 @@
 
     <!-- Hero Section -->
     <section class="hero">
+
+        <!-- Banner -->
         <div class="hero-banner" aria-label="Mealcarta invitation banner">
             <div class="hero-banner-inner">
-                <p class="hero-banner-kicker">A Mealcarta Invitation</p>
                 <div class="hero-banner-columns">
                     <div class="hero-banner-col">
-                        <h1 class="hero-banner-text">Eat Together<span class="dot">·</span>Think Together</h1>
-                        <p class="hero-banner-sub">Shared tables, shared stories</p>
+                        <h1 class="hero-banner-text">GET ANSWERS</h1>
                     </div>
                     <div class="hero-banner-col">
-                        <h1 class="hero-banner-text">Grow Together</h1>
                         <p class="hero-banner-sub">Ideas that move communities</p>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- Landscape image strip -->
         <div class="hero-landscape">
             <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=1800&h=700&q=80"
                  alt="A long communal table set for a shared meal"
@@ -999,9 +1038,24 @@
                  decoding="async">
         </div>
 
+        <!-- Magazine passage -->
+        <div class="hero-magazine" aria-label="A note from the Mealcarta editors">
+            <div class="hero-magazine-inner">
+                <p class="mag-kicker">Issue No. 01 · The Table</p>
+                <p class="mag-headline">The shortest distance between strangers<br>is a shared meal.</p>
+                <p class="mag-body">
+                    We set the table not to feed people, but to bring them closer. Every plate passed,
+                    every story told, every pause between bites is a quiet invitation — to listen, to
+                    linger, to belong. What follows is not a menu. It is a place to start.
+                </p>
+                <p class="mag-signature">— The Mealcarta Editors</p>
+            </div>
+        </div>
+
+        <!-- Hero content: horizontal cards LEFT, image RIGHT -->
         <div class="hero-inner">
             <div class="hero-left">
-                <div class="hero-cards-viewport" aria-label="Mealcarta hero highlights — scroll or swipe vertically to explore">
+                <div class="hero-cards-viewport" aria-label="Mealcarta hero highlights — swipe horizontally to explore">
                     <div class="hero-cards-track">
                         <article class="hero-card">
                             <span class="hero-card-label">The pack</span>
@@ -1435,4 +1489,4 @@
         });
     </script>
 </body>
-    </html>
+                            </html>
