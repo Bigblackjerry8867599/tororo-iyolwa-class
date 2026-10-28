@@ -38,84 +38,105 @@
         }
         
         /* Header & Navigation */
-        .navbar {
-            background-color: var(--light);
-            box-shadow: var(--light);
-            padding: 15px 0;
-            position: fixed;
-            width: 100%;
+=== SLIM NAV — 22px, green, no brand, no border ===== */
+        nav {
+            position: sticky;
             top: 0;
+            background: var(--hero-green);
             z-index: 1000;
-            transition: all 0.3s ease;
+            border-bottom: none;
+            padding: 0;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            overflow: visible;
         }
-        
-        .navbar.scrolled {
-            padding: 10px 0;
-            background-color: var(--light);
-        }
-        
+
         .container {
             width: 90%;
             max-width: 1200px;
             margin: 0 auto;
         }
-        
+
+        /* Everything hugs the RIGHT edge */
         .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 28px;
-            font-weight: 700;
-            color: #ffffff;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo i {
-            margin-right: 8px;
-            color: #ffffff;
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 30px;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: #ffffff;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-        
-        .nav-links a:hover {
-            color: #ffffff;
-        }
-        
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--light);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-links a:hover::after {
             width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;   /* <-- right aligned */
+            height: 100%;
         }
+
+        /* Hamburger sits on the right too */
+        #menu-toggle {
+            display: none;
+            margin-left: 0.5rem;
+            margin-right: 0;
+            font-size: 0.9rem;
+            line-height: 1;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        #nav-links {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        #nav-links a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            font-size: 0.8rem;
+            line-height: 1;
+            display: block;
+        }
+
+        #nav-links a:hover { color: var(--accent); }
+
+        #nav-links .nav-cta {
+            background-color: var(--accent);
+            color: var(--primary);
+            padding: 0.1rem 0.6rem;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.75rem;
+        }
+
+        /* Dropdown opens from the RIGHT, left-aligned text inside */
+        #nav-links.open {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;      /* <-- left-align items inside */
+            position: absolute;
+            top: 22px;
+            right: 1rem;                  /* <-- anchored right */
+            left: auto;
+            padding: 1rem;
+            background: var(--hero-green);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            gap: 1rem;
+            z-index: 999;
+            text-align: left;             /* <-- left-align text */
+        }
+
+
+
+
+        
+
+
         
         .btn {
             display: inline-block;
@@ -133,6 +154,12 @@
             background-color: var(--light);
             color: white;
         }
+
+
+
+
+
+            
         
         .btn-primary:hover {
             background-color: #000000;
@@ -665,32 +692,37 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav id="navbar" style="position: sticky; top: 0; background: #000000; z-index: 1000; border-bottom: 1px solid #eee; padding: 1rem 0; font-family: Arial, sans-serif;">
-      <div style="display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
-        
-        <!-- Logo -->
-        <a href="index.html" style="font-size: 1.5rem; font-weight: bold; color: #ffffff; text-decoration: none; display: flex; align-items: center; gap: 0.5rem;">
-          <i class="fas fa-utensils"></i> MEALCARTA
-        </a>
+   <!-- ===== NAV (22px, green, no brand, no border) ===== -->
+    <nav id="navbar">
+        <div class="nav-container">
 
-             
-            <!-- Hamburger Button -->
-            <button onclick="toggleMenu()" style="font-size: 1.5rem; background: transparent; border: none; cursor: pointer; display: none; color: white;" id="menu-toggle">
+            <!-- Hamburger (mobile only) — RIGHT -->
+            <button onclick="toggleMenu()" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
                 <i class="fas fa-bars"></i>
             </button>
 
-        <!-- Nav Links -->
-        <ul id="nav-links" style="list-style: none; display: flex; gap: 1.5rem; margin: 0; padding: 0;">
-          <li><a href="index.html" style="text-decoration: none; color: #ffffff; font-weight: 500;">Home</a></li>
-          <li><a href="solutions.html" style="text-decoration: none; color: #ffffff; font-weight: 500;">Solutions</a></li>
-          <li><a href="case-studies.html" style="text-decoration: none; color: #ffffff; font-weight: 500;">Case Studies</a></li>
-          <li><a href="about.html" style="text-decoration: none; color: #ffffff; font-weight: 500; color: var(--primary);">About</a></li>
-          <li><a href="contact.html" style="text-decoration: none; color: #ffffff; font-weight: 500;">Contact</a></li>
-          <li><a href="#" style="background-color: var(--primary); color: white; padding: 0.5rem 1rem; border-radius: 5px; text-decoration: none; font-weight: bold;">Sign Up</a></li>
-        </ul>
-      </div>
+            <!-- Menu — RIGHT -->
+            <ul id="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="solutions.html">Solutions</a></li>
+                <li><a href="case-studies.html">Case Studies</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#" class="nav-cta">Sign Up</a></li>
+            </ul>
+        </div>
     </nav>
+
+
+
+
+
+
+
+
+
+
+    
 
     <!-- Toggle Script -->
     <script>
@@ -731,6 +763,10 @@
       window.addEventListener('resize', handleResize);
       window.addEventListener('load', handleResize);
     </script>
+
+
+
+    
 
     <!-- Hero Section -->
       <div class="hero-section">
